@@ -1,0 +1,29 @@
+# Somente para o Oracle do compose.oracle.yaml: nenhuma alteração na API original.
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@//oracle:1521/FREEPDB1
+    username: CARBONO_BDD
+    password: ${BDD_ORACLE_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    defer-datasource-initialization: false
+    show-sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    clean-disabled: true
+    locations: classpath:db/migration
+  sql:
+    init:
+      mode: never
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /api/v1
+jwt:
+  # Chave pública de demonstração; não usar em outro ambiente.
+  secret: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  expiration: 3600000

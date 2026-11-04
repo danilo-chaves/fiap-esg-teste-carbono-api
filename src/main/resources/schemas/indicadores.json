@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "totalEmpresas",
+    "totalEmissoes",
+    "totalTco2eEmitido",
+    "totalAgendamentos",
+    "agendamentosConcluidos",
+    "totalTco2eCompensado",
+    "saldoLiquidoTco2e"
+  ],
+  "properties": {
+    "totalEmpresas": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalEmissoes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalTco2eEmitido": {
+      "type": "number",
+      "minimum": 0
+    },
+    "totalAgendamentos": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "agendamentosConcluidos": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalTco2eCompensado": {
+      "type": "number",
+      "minimum": 0
+    },
+    "saldoLiquidoTco2e": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false
+}

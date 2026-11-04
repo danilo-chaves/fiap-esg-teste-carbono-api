@@ -1,0 +1,8 @@
+# Contexto de build = pasta da carbono-api original, somente leitura no host.
+FROM maven:3.9.9-eclipse-temurin-21
+WORKDIR /api
+COPY pom.xml .
+COPY src ./src
+RUN mvn -B -DskipTests package && mvn -B dependency:build-classpath -DincludeScope=test -Dmdep.outputFile=/api/classpath.txt
+WORKDIR /tests
+CMD ["bash", "/config/container-api.sh"]

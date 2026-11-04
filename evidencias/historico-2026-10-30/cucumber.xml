@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="40.58" tests="25" skipped="0" failures="0" errors="0">
+<testcase classname="Autenticação e governança" name="Autenticar administrador com credenciais válidas" time="31.12">
+<system-out><![CDATA[
+Dado que estou autenticado como ADMIN.......................................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "login"..............................passed
+E o campo "role" deve ser "ADMIN"...........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Autenticação e governança" name="Rejeitar senha incorreta" time="0.2">
+<system-out><![CDATA[
+Dado que estou sem autenticação.............................................passed
+Quando envio POST para "/auth/login" com o JSON:............................passed
+Então o status deve ser 401.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "status" deve valer 401...........................................passed
+E o campo "mensagem" deve ser "Email ou senha inválidos"....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Autenticação e governança" name="Rejeitar login com email malformado" time="0.062">
+<system-out><![CDATA[
+Dado que estou sem autenticação.............................................passed
+Quando envio POST para "/auth/login" com o JSON:............................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "email".......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Autenticação e governança" name="Proteger leitura sem token" time="0.19">
+<system-out><![CDATA[
+Dado que estou sem autenticação.............................................passed
+Quando envio GET para "/empresas-sustentaveis"..............................passed
+Então o status deve ser 403.................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Autenticação e governança" name="Impedir cadastro pelo auditor" time="0.69">
+<system-out><![CDATA[
+Dado que estou autenticado como AUDITOR.....................................passed
+Quando envio POST para "/empresas-sustentaveis" com o JSON:.................passed
+Então o status deve ser 403.................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro e rastreabilidade de empresas" name="Cadastrar consultar e localizar empresa" time="1.423">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Então o campo "nome" deve ser "Empresa BDD".................................passed
+E o campo "cnpj" deve ser "${cnpj}".........................................passed
+E o campo "ativa" deve ser "true"...........................................passed
+Quando envio GET para "/empresas-sustentaveis/${empresaId}".................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "empresa"............................passed
+E o campo "id" deve ser "${empresaId}"......................................passed
+Quando envio GET para "/empresas-sustentaveis?sort=id,desc&size=100"........passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "pagina-empresa".....................passed
+E a página deve conter o id salvo em "empresaId"............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro e rastreabilidade de empresas" name="Rejeitar CNPJ duplicado" time="0.25">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/empresas-sustentaveis" com o JSON:.................passed
+Então o status deve ser 409.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "status" deve valer 409...........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro e rastreabilidade de empresas" name="Validar campos obrigatórios da empresa" time="0.35">
+<system-out><![CDATA[
+Dado que estou autenticado como ADMIN.......................................passed
+Quando envio POST para "/empresas-sustentaveis" com o JSON:.................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "cnpj"........................................passed
+E o erro deve apontar o campo "nome"........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Cadastro e rastreabilidade de empresas" name="Consultar empresa inexistente" time="0.247">
+<system-out><![CDATA[
+Dado que estou autenticado como ADMIN.......................................passed
+Quando envio GET para "/empresas-sustentaveis/9223372036854775807"..........passed
+Então o status deve ser 404.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "status" deve valer 404...........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Registro e histórico de emissões de carbono" name="Registrar emissão e conferir histórico" time="0.721">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+E que registrei uma emissão de 100 tCO2e....................................passed
+Então o campo "quantidadeTco2e" deve valer 100..............................passed
+E o campo "empresaId" deve ser "${empresaId}"...............................passed
+E o campo "escopo" deve ser "ESCOPO_1"......................................passed
+Quando envio GET para "/emissoes-carbono?sort=id,desc&size=100".............passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "pagina-emissao".....................passed
+E a página deve conter o id salvo em "emissaoId"............................passed
+Quando envio GET para "/historico-emissoes/${empresaId}"....................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "pagina-emissao".....................passed
+E a página deve conter o id salvo em "emissaoId"............................passed
+E a página deve pertencer à empresa exclusiva...............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Registro e histórico de emissões de carbono" name="Rejeitar emissão negativa" time="0.222">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/relatorio-emissao" com o JSON:.....................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "quantidadeTco2e".............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Registro e histórico de emissões de carbono" name="Rejeitar emissão futura" time="0.283">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/relatorio-emissao" com o JSON:.....................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "dataEmissao".................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Registro e histórico de emissões de carbono" name="Rejeitar emissão para empresa inexistente" time="0.174">
+<system-out><![CDATA[
+Dado que estou autenticado como ADMIN.......................................passed
+Quando envio POST para "/relatorio-emissao" com o JSON:.....................passed
+Então o status deve ser 404.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Planejamento e cancelamento de redução" name="Criar listar atualizar e cancelar plano" time="0.779">
+<system-out><![CDATA[
+Dado que possuo um agendamento exclusivo....................................passed
+Então o campo "status" deve ser "PENDENTE"..................................passed
+E o campo "metaReducaoTco2e" deve valer 25..................................passed
+Quando envio GET para "/agendamento-reducao-carbono?sort=id,desc&size=100"..passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "pagina-agendamento".................passed
+E a página deve conter o id salvo em "agendamentoId"........................passed
+Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON:.passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "agendamento"........................passed
+E o campo "status" deve ser "EM_ANDAMENTO"..................................passed
+E o campo "titulo" deve ser "Plano atualizado"..............................passed
+E o campo "metaReducaoTco2e" deve valer 30..................................passed
+Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}"....passed
+Então o status deve ser 204.................................................passed
+E o corpo deve estar vazio..................................................passed
+Quando envio GET para "/impacto-mitigacao/${agendamentoId}".................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "impacto"............................passed
+E o campo "status" deve ser "CANCELADO".....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Planejamento e cancelamento de redução" name="Impedir novo cancelamento" time="0.319">
+<system-out><![CDATA[
+Dado que possuo um agendamento exclusivo....................................passed
+Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}"....passed
+Então o status deve ser 204.................................................passed
+E o corpo deve estar vazio..................................................passed
+Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}"....passed
+Então o status deve ser 422.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "mensagem" deve ser "Agendamento já está cancelado"...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Planejamento e cancelamento de redução" name="Impedir atualização de plano cancelado" time="0.279">
+<system-out><![CDATA[
+Dado que possuo um agendamento exclusivo....................................passed
+Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}"....passed
+Então o status deve ser 204.................................................passed
+Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON:.passed
+Então o status deve ser 422.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "mensagem" deve ser "Não é possível atualizar um agendamento cancelado".passed
+]]></system-out>
+</testcase>
+<testcase classname="Planejamento e cancelamento de redução" name="Rejeitar fim anterior ao início" time="0.366">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/agendamento-reducao-carbono" com o JSON:...........passed
+Então o status deve ser 422.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o campo "mensagem" deve ser "Data fim prevista deve ser posterior à data de início".passed
+]]></system-out>
+</testcase>
+<testcase classname="Planejamento e cancelamento de redução" name="Rejeitar meta zero" time="0.272">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/agendamento-reducao-carbono" com o JSON:...........passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "metaReducaoTco2e"............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Compensação e integridade ambiental" name="Registrar e listar compensação" time="0.34">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+E que registrei uma compensação de 40 tCO2e.................................passed
+Então o campo "quantidadeTco2e" deve valer 40...............................passed
+E o campo "empresaId" deve ser "${empresaId}"...............................passed
+E o campo "tipo" deve ser "REFLORESTAMENTO".................................passed
+Quando envio GET para "/compensacao-carbono?sort=id,desc&size=100"..........passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "pagina-compensacao".................passed
+E a página deve conter o id salvo em "compensacaoId"........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Compensação e integridade ambiental" name="Rejeitar compensação negativa" time="0.183">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/compensacao-carbono" com o JSON:...................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "quantidadeTco2e".............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Compensação e integridade ambiental" name="Rejeitar compensação futura" time="0.256">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+Quando envio POST para "/compensacao-carbono" com o JSON:...................passed
+Então o status deve ser 400.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+E o erro deve apontar o campo "dataCompensacao".............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Precisão dos indicadores ESG" name="Conferir saldo por diferença de totais" time="0.454">
+<system-out><![CDATA[
+Dado que possuo uma empresa exclusiva.......................................passed
+E que capturei o saldo líquido inicial......................................passed
+E que registrei uma emissão de 100 tCO2e....................................passed
+E que registrei uma compensação de 40 tCO2e.................................passed
+Quando envio GET para "/indicadores-sustentabilidade".......................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "indicadores"........................passed
+E o saldo líquido deve aumentar 60 tCO2e....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Precisão dos indicadores ESG" name="Calcular impacto de meta sobre emissão da empresa" time="0.341">
+<system-out><![CDATA[
+Dado que possuo um agendamento exclusivo....................................passed
+E que registrei uma emissão de 100 tCO2e....................................passed
+Quando envio GET para "/impacto-mitigacao/${agendamentoId}".................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "impacto"............................passed
+E o campo "agendamentoId" deve ser "${agendamentoId}".......................passed
+E o campo "metaReducaoTco2e" deve valer 25..................................passed
+E o campo "totalEmitidoEmpresa" deve valer 100..............................passed
+E o campo "percentualImpacto" deve valer 25.................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Precisão dos indicadores ESG" name="Retornar impacto zero sem emissões" time="0.238">
+<system-out><![CDATA[
+Dado que possuo um agendamento exclusivo....................................passed
+Quando envio GET para "/impacto-mitigacao/${agendamentoId}".................passed
+Então o status deve ser 200.................................................passed
+E a resposta deve respeitar o contrato "impacto"............................passed
+E o campo "totalEmitidoEmpresa" deve valer 0................................passed
+E o campo "percentualImpacto" deve valer 0..................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Precisão dos indicadores ESG" name="Consultar impacto de agendamento inexistente" time="0.138">
+<system-out><![CDATA[
+Dado que estou autenticado como ADMIN.......................................passed
+Quando envio GET para "/impacto-mitigacao/9223372036854775807"..............passed
+Então o status deve ser 404.................................................passed
+E a resposta deve respeitar o contrato "erro"...............................passed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -1,0 +1,91 @@
+name: Testes BDD Carbono API - Oracle
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      api_ref:
+        description: 'Commit, tag ou branch da API (vazio = commit validado)'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bdd-oracle-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  API_REPOSITORY: danilo-chaves/fiap-esg-carbono-api
+  # Mesmos pom.xml e src/ da API validada localmente pelo grupo.
+  API_REF: ${{ inputs.api_ref || 'e2f28b435eb25c41dd882089d9bd3dc84cbff704' }}
+
+jobs:
+  bdd-oracle:
+    name: BDD e contratos com Oracle real
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+        working-directory: teste-carbono-api
+    steps:
+      - name: Obter projeto de testes
+        uses: actions/checkout@v6
+        with:
+          path: teste-carbono-api
+          persist-credentials: false
+
+      - name: Obter API original no commit escolhido
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ env.API_REPOSITORY }}
+          ref: ${{ env.API_REF }}
+          path: carbono-api
+          token: ${{ secrets.API_READ_TOKEN || github.token }}
+          persist-credentials: false
+
+      - name: Registrar ambiente e revisões
+        run: |
+          mkdir -p target/ci
+          {
+            date -Iseconds
+            printf 'API repository: %s\n' "$API_REPOSITORY"
+            printf 'API commit: '
+            git -C ../carbono-api rev-parse HEAD
+            printf 'Tests commit: '
+            git rev-parse HEAD
+            docker version
+            docker compose version
+            df -h .
+          } | tee target/ci/ambiente.txt
+
+      - name: Executar suíte completa com Oracle
+        run: bash scripts/run-oracle.sh
+
+      - name: Conferir relatório e resumir resultado
+        run: python3 scripts/check-cucumber-report.py target/oracle/cucumber.json
+
+      - name: Preservar diagnóstico e desligar serviços
+        if: always()
+        run: |
+          mkdir -p target/ci
+          docker compose -f compose.oracle.yaml logs --no-color > target/ci/compose.log 2>&1 || true
+          docker compose -f compose.oracle.yaml ps -a > target/ci/containers.txt 2>&1 || true
+          docker compose -f compose.oracle.yaml images > target/ci/imagens.txt 2>&1 || true
+          docker compose -f compose.oracle.yaml down --volumes --remove-orphans
+
+      - name: Publicar relatórios e logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencias-oracle-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            teste-carbono-api/target/oracle
+            teste-carbono-api/target/ci
+          if-no-files-found: warn
+          retention-days: 30

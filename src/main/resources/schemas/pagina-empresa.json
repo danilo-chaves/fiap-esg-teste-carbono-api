@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": [
+    "content",
+    "totalElements",
+    "totalPages",
+    "size",
+    "number",
+    "numberOfElements",
+    "first",
+    "last",
+    "empty"
+  ],
+  "properties": {
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "nome",
+          "cnpj",
+          "setor",
+          "pais",
+          "ativa",
+          "dataCadastro"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "nome": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cnpj": {
+            "type": "string",
+            "pattern": "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$"
+          },
+          "setor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pais": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ativa": {
+            "type": "boolean"
+          },
+          "dataCadastro": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "totalElements": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalPages": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "numberOfElements": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "first": {
+      "type": "boolean"
+    },
+    "last": {
+      "type": "boolean"
+    },
+    "empty": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,347 @@
+{
+  "tipo": "Analise estrutural; nao executa Java nem HTTP",
+  "ferramenta": "Parser e compilador Gherkin oficial + Cucumber Expressions Python",
+  "cenarios": 34,
+  "passos": 188,
+  "bindings": "Todos os passos possuem uma unica definicao correspondente",
+  "detalhes": [
+    {
+      "cenario": "Autenticar administrador com credenciais válidas",
+      "passos": 4,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@governanca",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar senha incorreta",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@governanca",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar login com email malformado",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@governanca",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Proteger leitura sem token",
+      "passos": 3,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@governanca"
+      ]
+    },
+    {
+      "cenario": "Impedir cadastro pelo auditor",
+      "passos": 3,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@governanca"
+      ]
+    },
+    {
+      "cenario": "Cadastrar empresa",
+      "passos": 7,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Consultar empresa pelo identificador",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Localizar empresa na listagem",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar CNPJ duplicado",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Validar campos obrigatórios da empresa",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Consultar empresa inexistente",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Registrar emissão de carbono",
+      "passos": 7,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Localizar emissão na listagem",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Consultar histórico de emissões da empresa",
+      "passos": 7,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar emissão com valor negativo",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar emissão com data futura",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar emissão para empresa inexistente",
+      "passos": 4,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Criar plano de redução",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Localizar plano na listagem",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Atualizar plano de redução",
+      "passos": 7,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Cancelar plano de redução",
+      "passos": 4,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Consultar situação de plano cancelado",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Impedir novo cancelamento",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Impedir atualização de plano cancelado",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar fim anterior ao início",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar meta zero",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Registrar compensação de carbono",
+      "passos": 7,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Localizar compensação na listagem",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar compensação com valor negativo",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Rejeitar compensação com data futura",
+      "passos": 5,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Conferir saldo por diferença de totais",
+      "passos": 8,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Calcular impacto de meta sobre emissão da empresa",
+      "passos": 9,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Retornar impacto zero sem emissões",
+      "passos": 6,
+      "tags": [
+        "@regressivo",
+        "@positivo",
+        "@esg",
+        "@contrato"
+      ]
+    },
+    {
+      "cenario": "Consultar impacto de agendamento inexistente",
+      "passos": 4,
+      "tags": [
+        "@regressivo",
+        "@negativo",
+        "@esg",
+        "@contrato"
+      ]
+    }
+  ]
+}

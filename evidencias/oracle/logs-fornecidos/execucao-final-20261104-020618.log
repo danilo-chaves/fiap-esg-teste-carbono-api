@@ -1,0 +1,975 @@
+$ bash scripts/run-oracle.sh
+Docker Compose version v5.1.4
+ Image teste-carbono-oracle-bdd-tests Building
+ Image teste-carbono-oracle-bdd-api Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.24kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile.api
+#2 transferring dockerfile:
+#2 transferring dockerfile: 381B 0.2s done
+#2 DONE 0.9s
+
+#3 [tests internal] load build definition from Dockerfile
+#3 transferring dockerfile: 179B 0.2s done
+#3 DONE 1.3s
+
+#4 [api internal] load metadata for docker.io/library/maven:3.9.9-eclipse-temurin-21
+#4 ...
+
+#5 [auth] library/maven:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#4 [tests internal] load metadata for docker.io/library/maven:3.9.9-eclipse-temurin-21
+#4 DONE 2.5s
+
+#6 [tests internal] load .dockerignore
+#6 transferring context: 64B 0.1s
+#6 transferring context: 68B 0.1s done
+#6 ...
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 2B 0.2s done
+#7 DONE 1.0s
+
+#6 [tests internal] load .dockerignore
+#6 ...
+
+#8 [api internal] load build context
+#8 DONE 0.0s
+
+#9 [api 1/6] FROM docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e4b10211e
+#9 resolve docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e4b10211e
+#9 ...
+
+#6 [tests internal] load .dockerignore
+#6 DONE 1.6s
+
+#9 [tests 1/6] FROM docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e4b10211e
+#9 resolve docker.io/library/maven:3.9.9-eclipse-temurin-21@sha256:3a4ab3276a087bf276f79cae96b1af04f53731bec53fb2e651aca79e4b10211e 1.1s done
+#9 DONE 1.4s
+
+#10 [tests internal] load build context
+#10 transferring context: 1.82kB 0.5s done
+#10 DONE 1.2s
+
+#8 [api internal] load build context
+#8 ...
+
+#11 [tests 2/5] WORKDIR /tests
+#11 CACHED
+
+#12 [tests 3/5] COPY pom.xml .
+#12 CACHED
+
+#13 [tests 4/5] RUN mvn -B dependency:go-offline
+#13 CACHED
+
+#14 [tests 5/5] COPY src ./src
+#14 CACHED
+
+#8 [api internal] load build context
+#8 transferring context: 7.20kB 0.8s done
+#8 DONE 1.7s
+
+#15 [tests] exporting to image
+#15 exporting layers 0.0s done
+#15 exporting manifest sha256:52c9deb6782bbd75c4f49049e99595e447e42976cff1c50f3f9ddb7901795dd8 0.2s done
+#15 exporting config sha256:8bcf3ec508178982d2cade4fa08147dc137e910912bb7c7c4fab10e0779a1242 0.1s done
+#15 exporting attestation manifest sha256:109407fbcce53ab37d42739cc315919080e25ec9edb8e3b71da21ca2d8b09e11
+#15 ...
+
+#16 [api 2/6] WORKDIR /api
+#16 CACHED
+
+#17 [api 3/6] COPY pom.xml .
+#17 CACHED
+
+#18 [api 4/6] COPY src ./src
+#18 CACHED
+
+#19 [api 5/6] RUN mvn -B -DskipTests package && mvn -B dependency:build-classpath -DincludeScope=test -Dmdep.outputFile=/api/classpath.txt
+#19 CACHED
+
+#20 [api 6/6] WORKDIR /tests
+#20 CACHED
+
+#15 [tests] exporting to image
+#15 exporting attestation manifest sha256:109407fbcce53ab37d42739cc315919080e25ec9edb8e3b71da21ca2d8b09e11 2.2s done
+#15 exporting manifest list sha256:c961b884f2095d0e584408e199058f8a6e23a8f78962a3be00fbc450527d43fb
+#15 exporting manifest list sha256:c961b884f2095d0e584408e199058f8a6e23a8f78962a3be00fbc450527d43fb 1.3s done
+#15 naming to docker.io/library/teste-carbono-oracle-bdd-tests:latest
+#15 naming to docker.io/library/teste-carbono-oracle-bdd-tests:latest 0.3s done
+#15 unpacking to docker.io/library/teste-carbono-oracle-bdd-tests:latest
+#15 unpacking to docker.io/library/teste-carbono-oracle-bdd-tests:latest 0.7s done
+#15 DONE 6.6s
+
+#21 [api] exporting to image
+#21 exporting layers 0.0s done
+#21 exporting manifest sha256:aa5eac34e3d984b5e9773d12dd503557278217f9ae38a13c0f3e8f690695c95e 0.1s done
+#21 exporting config sha256:e37544278c38084780852c9cad362f0a271cf2f808de86a10f4f23aa9304e8ec 0.4s done
+#21 exporting attestation manifest sha256:3468c7c8528973f9de689863953d4cebabf1af258867625eb1ae3a9f74e1bbc9 2.4s done
+#21 exporting manifest list sha256:53b25c16e998f9d00b2241cf9125ad6a6017de0d5ee68254a2da4ee180e1774f
+#21 exporting manifest list sha256:53b25c16e998f9d00b2241cf9125ad6a6017de0d5ee68254a2da4ee180e1774f 2.1s done
+#21 naming to docker.io/library/teste-carbono-oracle-bdd-api:latest
+#21 naming to docker.io/library/teste-carbono-oracle-bdd-api:latest 0.9s done
+#21 unpacking to docker.io/library/teste-carbono-oracle-bdd-api:latest
+#21 unpacking to docker.io/library/teste-carbono-oracle-bdd-api:latest 0.6s done
+#21 DONE 8.1s
+
+#22 [tests] resolving provenance for metadata file
+#22 DONE 0.0s
+
+#23 [api] resolving provenance for metadata file
+#23 DONE 1.3s
+ Image teste-carbono-oracle-bdd-api Built
+ Image teste-carbono-oracle-bdd-tests Built
+ Network teste-carbono-oracle-bdd_default Creating
+ Network teste-carbono-oracle-bdd_default Created
+ Container teste-carbono-oracle-bdd-oracle-1 Creating
+ Container teste-carbono-oracle-bdd-oracle-1 Created
+ Container teste-carbono-oracle-bdd-api-1 Creating
+ Container teste-carbono-oracle-bdd-api-1 Created
+ Container teste-carbono-oracle-bdd-tests-1 Creating
+ Container teste-carbono-oracle-bdd-tests-1 Created
+Attaching to api-1, oracle-1, tests-1
+ Container teste-carbono-oracle-bdd-oracle-1 Starting
+ Container teste-carbono-oracle-bdd-oracle-1 Started
+ Container teste-carbono-oracle-bdd-oracle-1 Waiting
+oracle-1  | CONTAINER: starting up...
+oracle-1  | CONTAINER: database already initialized.
+oracle-1  | CONTAINER: starting up Oracle Database...
+oracle-1  |
+oracle-1  | LSNRCTL for Linux: Version 23.26.3.0.0 - Production on 04-NOV-2026 05:07:03
+oracle-1  |
+oracle-1  | Copyright (c) 1991, 2026, Oracle.  All rights reserved.
+oracle-1  |
+oracle-1  | Starting /opt/oracle/product/26ai/dbhomeFree/bin/tnslsnr: please wait...
+oracle-1  |
+oracle-1  | TNSLSNR for Linux: Version 23.26.3.0.0 - Production
+oracle-1  | System parameter file is /opt/oracle/product/26ai/dbhomeFree/network/admin/listener.ora
+oracle-1  | Log messages written to /opt/oracle/diag/tnslsnr/0cb2e6655c15/listener/alert/log.xml
+oracle-1  | Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC_FOR_FREE)))
+oracle-1  | Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=0cb2e6655c15)(PORT=1521)))
+oracle-1  |
+oracle-1  | Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC_FOR_FREE)))
+oracle-1  | STATUS of the LISTENER
+oracle-1  | ------------------------
+oracle-1  | Alias                     LISTENER
+oracle-1  | Version                   TNSLSNR for Linux: Version 23.26.3.0.0 - Production
+oracle-1  | Start Date                04-NOV-2026 05:07:16
+oracle-1  | Uptime                    0 days 0 hr. 0 min. 13 sec
+oracle-1  | Trace Level               off
+oracle-1  | Security                  ON: Local OS Authentication
+oracle-1  | SNMP                      OFF
+oracle-1  | Default Service           FREE
+oracle-1  | Listener Parameter File   /opt/oracle/product/26ai/dbhomeFree/network/admin/listener.ora
+oracle-1  | Listener Log File         /opt/oracle/diag/tnslsnr/0cb2e6655c15/listener/alert/log.xml
+oracle-1  | Listening Endpoints Summary...
+oracle-1  |   (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC_FOR_FREE)))
+oracle-1  |   (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=0cb2e6655c15)(PORT=1521)))
+oracle-1  | The listener supports no services
+oracle-1  | The command completed successfully
+oracle-1  | ORACLE instance started.
+oracle-1  |
+oracle-1  | Total System Global Area 1603398928 bytes
+oracle-1  | Fixed Size              5033232 bytes
+oracle-1  | Variable Size                 603979776 bytes
+oracle-1  | Database Buffers      989855744 bytes
+oracle-1  | Redo Buffers                    4530176 bytes
+oracle-1  | Database mounted.
+oracle-1  | Database opened.
+oracle-1  |
+oracle-1  | ORACLE DATABASE VERSION
+oracle-1  | --------------------------------------------------------------------------------
+oracle-1  | Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for F
+oracle-1  | ree
+oracle-1  | Version 23.26.3.0.0
+oracle-1  |
+oracle-1  |
+oracle-1  |
+oracle-1  | CONTAINER: WARNING: $ORACLE_PASSWORD has been specified but the database is already initialized. The password will be ignored.
+oracle-1  | CONTAINER: WARNING: If you want to reset the password, please run the resetPassword command, e.g. 'docker|podman exec <container name|id> resetPassword <your password>'.
+oracle-1  |
+oracle-1  | #########################
+oracle-1  | DATABASE IS READY TO USE!
+oracle-1  | #########################
+oracle-1  |
+oracle-1  | ####################################################################
+oracle-1  | CONTAINER: The following output is now from the alert_FREE.log file:
+oracle-1  | ####################################################################
+oracle-1  | ===========================================================
+oracle-1  | Unable to obtain current patch information due to error: 20013
+oracle-1  | ===========================================================
+oracle-1  | 2026-11-04T05:12:49.235728+00:00
+oracle-1  | PDB$SEED(2):Opening pdb with Resource Manager plan: DEFAULT_PLAN
+oracle-1  | FREEPDB1(3):Autotune of undo retention is turned on.
+oracle-1  | 2026-11-04T05:13:01.350691+00:00
+oracle-1  | FREEPDB1(3):Opening pdb with Resource Manager plan: DEFAULT_PLAN
+oracle-1  | Completed: Pluggable database FREEPDB1 opened read write
+oracle-1  | Completed: ALTER DATABASE OPEN
+ Container teste-carbono-oracle-bdd-oracle-1 Healthy
+ Container teste-carbono-oracle-bdd-api-1 Starting
+ Container teste-carbono-oracle-bdd-api-1 Started
+ Container teste-carbono-oracle-bdd-api-1 Waiting
+oracle-1  | 2026-11-04T05:13:12.725154+00:00
+oracle-1  | --ATTENTION--
+oracle-1  | The system is observing online redo log writes that are taking longer than expected to complete. This can lead to system performance instability.
+api-1     | BDD DATABASE: Oracle
+api-1     | BDD DATABASE VERSION: Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+api-1     | Version 23.26.3.0.0
+api-1     | BDD SCHEMA: CARBONO_BDD
+api-1     | 05:13:37.554 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:oracle:thin:@//oracle:1521/FREEPDB1 (Oracle 23.26)
+api-1     | 05:13:37.773 [main] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: Oracle 23.26 is newer than this version of Flyway and support has not been tested. The latest supported version of Oracle is 21.3.
+api-1     | 05:13:38.346 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 6 migrations (execution time 00:00.539s)
+api-1     | 05:13:38.597 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "CARBONO_BDD": 6
+api-1     | 05:13:38.606 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Schema "CARBONO_BDD" is up to date. No migration necessary.
+api-1     | 05:13:38.770 [main] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: Oracle 23.26 is newer than this version of Flyway and support has not been tested. The latest supported version of Oracle is 21.3.
+api-1     | 05:13:38.795 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 6 migrations (execution time 00:00.018s)
+api-1     | 05:13:39.050 [main] WARN org.flywaydb.core.internal.database.base.Database -- Flyway upgrade recommended: Oracle 23.26 is newer than this version of Flyway and support has not been tested. The latest supported version of Oracle is 21.3.
+api-1     | BDD MIGRATION: 1 | create table empresas | SUCCESS
+api-1     | BDD MIGRATION: 2 | create table emissoes carbono | SUCCESS
+api-1     | BDD MIGRATION: 3 | create table agendamento reducao | SUCCESS
+api-1     | BDD MIGRATION: 4 | create table compensacao carbono | SUCCESS
+api-1     | BDD MIGRATION: 5 | create table usuarios | SUCCESS
+api-1     | BDD MIGRATION: 6 | insert dados iniciais | SUCCESS
+api-1     | BDD USERS: 3 usuários fictícios preparados; credenciais não registradas
+api-1     |
+api-1     |   .   ____          _            __ _ _
+api-1     |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+api-1     | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+api-1     |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+api-1     |   '  |____| .__|_| |_|_| |_\__, | / / / /
+api-1     |  =========|_|==============|___/=/_/_/_/
+api-1     |
+api-1     |  :: Spring Boot ::               (v3.5.14)
+api-1     |
+api-1     | 2026-11-04T05:13:46.140Z  INFO 1 --- [carbono-api] [  restartedMain] b.c.f.carbonoapi.CarbonoApiApplication   : Starting CarbonoApiApplication using Java 21.0.7 with PID 1 (/api/target/classes started by root in /tests)
+api-1     | 2026-11-04T05:13:46.144Z  INFO 1 --- [carbono-api] [  restartedMain] b.c.f.carbonoapi.CarbonoApiApplication   : No active profile set, falling back to 1 default profile: "default"
+api-1     | 2026-11-04T05:13:46.371Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in /root/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.7.0.25.01/ojdbc11-23.7.0.25.01.jar referenced one or more files that do not exist: file:/root/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.7.0.25.01/oraclepki.jar
+api-1     | 2026-11-04T05:13:46.372Z  INFO 1 --- [carbono-api] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+api-1     | 2026-11-04T05:13:46.373Z  INFO 1 --- [carbono-api] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+api-1     | 2026-11-04T05:13:49.565Z  INFO 1 --- [carbono-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+api-1     | 2026-11-04T05:13:49.698Z  INFO 1 --- [carbono-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 5 JPA repository interfaces.
+api-1     | 2026-11-04T05:13:51.271Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+api-1     | 2026-11-04T05:13:51.298Z  INFO 1 --- [carbono-api] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+api-1     | 2026-11-04T05:13:51.299Z  INFO 1 --- [carbono-api] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+api-1     | 2026-11-04T05:13:51.370Z  INFO 1 --- [carbono-api] [  restartedMain] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring embedded WebApplicationContext
+api-1     | 2026-11-04T05:13:51.374Z  INFO 1 --- [carbono-api] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4994 ms
+api-1     | 2026-11-04T05:13:52.036Z  INFO 1 --- [carbono-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+api-1     | 2026-11-04T05:13:52.975Z  INFO 1 --- [carbono-api] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@17f405e9
+api-1     | 2026-11-04T05:13:52.980Z  INFO 1 --- [carbono-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+api-1     | 2026-11-04T05:13:53.010Z  INFO 1 --- [carbono-api] [  restartedMain] org.flywaydb.core.FlywayExecutor         : Database: jdbc:oracle:thin:@//oracle:1521/FREEPDB1 (Oracle 23.26)
+api-1     | 2026-11-04T05:13:53.361Z  WARN 1 --- [carbono-api] [  restartedMain] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: Oracle 23.26 is newer than this version of Flyway and support has not been tested. The latest supported version of Oracle is 21.3.
+api-1     | 2026-11-04T05:13:53.468Z  INFO 1 --- [carbono-api] [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 6 migrations (execution time 00:00.076s)
+api-1     | 2026-11-04T05:13:53.511Z  INFO 1 --- [carbono-api] [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "CARBONO_BDD": 6
+api-1     | 2026-11-04T05:13:53.525Z  INFO 1 --- [carbono-api] [  restartedMain] o.f.core.internal.command.DbMigrate      : Schema "CARBONO_BDD" is up to date. No migration necessary.
+api-1     | 2026-11-04T05:13:53.967Z  INFO 1 --- [carbono-api] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+api-1     | 2026-11-04T05:13:54.477Z  INFO 1 --- [carbono-api] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.49.Final
+api-1     | 2026-11-04T05:13:54.564Z  INFO 1 --- [carbono-api] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+api-1     | 2026-11-04T05:13:55.464Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+api-1     | 2026-11-04T05:13:55.656Z  INFO 1 --- [carbono-api] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+api-1     |     Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+api-1     |     Database driver: undefined/unknown
+api-1     |     Database version: 23.26
+api-1     |     Autocommit mode: undefined/unknown
+api-1     |     Isolation level: undefined/unknown
+api-1     |     Minimum pool size: undefined/unknown
+api-1     |     Maximum pool size: undefined/unknown
+api-1     | 2026-11-04T05:13:56.938Z  INFO 1 --- [carbono-api] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+api-1     | 2026-11-04T05:13:56.942Z  INFO 1 --- [carbono-api] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+api-1     | 2026-11-04T05:13:57.943Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+api-1     | 2026-11-04T05:13:59.314Z  INFO 1 --- [carbono-api] [  restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+api-1     | 2026-11-04T05:13:59.316Z  WARN 1 --- [carbono-api] [  restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+api-1     | 2026-11-04T05:13:59.935Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:oracle:thin:@//oracle:1521/FREEPDB1'
+api-1     | 2026-11-04T05:14:00.081Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+api-1     | 2026-11-04T05:14:00.123Z  INFO 1 --- [carbono-api] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api/v1'
+api-1     | 2026-11-04T05:14:00.142Z  INFO 1 --- [carbono-api] [  restartedMain] b.c.f.carbonoapi.CarbonoApiApplication   : Started CarbonoApiApplication in 15.503 seconds (process running for 17.771)
+api-1     | 2026-11-04T05:14:04.967Z  INFO 1 --- [carbono-api] [0.0-8080-exec-1] o.a.c.c.C.[.[localhost].[/api/v1]        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+api-1     | 2026-11-04T05:14:04.972Z  INFO 1 --- [carbono-api] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+api-1     | 2026-11-04T05:14:04.977Z  INFO 1 --- [carbono-api] [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+api-1     | 2026-11-04T05:14:05.222Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]]
+api-1     | 2026-11-04T05:14:05.263Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] ]
+ Container teste-carbono-oracle-bdd-api-1 Healthy
+ Container teste-carbono-oracle-bdd-tests-1 Starting
+ Container teste-carbono-oracle-bdd-tests-1 Started
+api-1     | 2026-11-04T05:14:10.397Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:10.401Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+tests-1   | [INFO] Scanning for projects...
+tests-1   | [INFO]
+tests-1   | [INFO] -------------------< br.com.fiap:teste-carbono-api >--------------------
+tests-1   | [INFO] Building teste-carbono-api 1.0.0
+tests-1   | [INFO]   from pom.xml
+tests-1   | [INFO] --------------------------------[ jar ]---------------------------------
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/maven-metadata.xml
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/maven-metadata.xml (3.6 kB at 3.8 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.4/messages-19.1.4.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.4/messages-19.1.4.pom (4.1 kB at 107 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/3.0.0/cucumber-parent-3.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/3.0.0/cucumber-parent-3.0.0.pom (22 kB at 444 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.1/junit-bom-5.9.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.1/junit-bom-5.9.1.pom (5.6 kB at 131 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.4/jackson-bom-2.13.4.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.4/jackson-bom-2.13.4.pom (17 kB at 369 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.13/jackson-parent-2.13.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.13/jackson-parent-2.13.pom (7.4 kB at 225 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/43/oss-parent-43.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/43/oss-parent-43.pom (24 kB at 437 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/20.0.0/messages-20.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/20.0.0/messages-20.0.0.pom (4.2 kB at 136 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/4.1.1/cucumber-parent-4.1.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/4.1.1/cucumber-parent-4.1.1.pom (21 kB at 500 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.0/jackson-bom-2.14.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.0/jackson-bom-2.14.0.pom (17 kB at 448 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.14/jackson-parent-2.14.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.14/jackson-parent-2.14.pom (7.7 kB at 213 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/48/oss-parent-48.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/48/oss-parent-48.pom (24 kB at 566 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/21.0.1/messages-21.0.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/21.0.1/messages-21.0.1.pom (4.4 kB at 123 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.1/jackson-bom-2.14.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.1/jackson-bom-2.14.1.pom (17 kB at 530 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/22.0.0/messages-22.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/22.0.0/messages-22.0.0.pom (4.4 kB at 114 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.2/junit-bom-5.9.2.pom (5.6 kB at 144 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.2/jackson-bom-2.14.2.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.14.2/jackson-bom-2.14.2.pom (17 kB at 648 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/23.0.0/messages-23.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/23.0.0/messages-23.0.0.pom (4.4 kB at 159 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.15.3/jackson-bom-2.15.3.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.15.3/jackson-bom-2.15.3.pom (18 kB at 500 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.15/jackson-parent-2.15.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.15/jackson-parent-2.15.pom (6.5 kB at 186 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/50/oss-parent-50.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/50/oss-parent-50.pom (24 kB at 762 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/24.0.0/messages-24.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/24.0.0/messages-24.0.0.pom (4.4 kB at 84 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.16.0/jackson-bom-2.16.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.16.0/jackson-bom-2.16.0.pom (18 kB at 372 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/24.0.1/messages-24.0.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/24.0.1/messages-24.0.1.pom (4.4 kB at 82 kB/s)
+api-1     | 2026-11-04T05:14:15.683Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:15.688Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/query/maven-metadata.xml
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/query/maven-metadata.xml (1.3 kB at 26 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/18.0.0/messages-18.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/18.0.0/messages-18.0.0.pom (4.0 kB at 150 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/2.3.2/cucumber-parent-2.3.2.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/cucumber-parent/2.3.2/cucumber-parent-2.3.2.pom (22 kB at 518 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.2/jackson-bom-2.13.2.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.2/jackson-bom-2.13.2.pom (17 kB at 599 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.0.0/messages-19.0.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.0.0/messages-19.0.0.pom (4.1 kB at 145 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.3/jackson-bom-2.13.3.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.13.3/jackson-bom-2.13.3.pom (17 kB at 423 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.0/messages-19.1.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.0/messages-19.1.0.pom (4.1 kB at 162 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.1/messages-19.1.1.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.1/messages-19.1.1.pom (4.1 kB at 145 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.2/messages-19.1.2.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.2/messages-19.1.2.pom (4.1 kB at 156 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.3/messages-19.1.3.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/19.1.3/messages-19.1.3.pom (4.1 kB at 177 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.0/junit-bom-5.9.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.0/junit-bom-5.9.0.pom (5.6 kB at 194 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.pom (7.4 kB at 238 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-base/2.11.0/jackson-base-2.11.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-base/2.11.0/jackson-base-2.11.0.pom (7.4 kB at 324 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.11.0/jackson-bom-2.11.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-bom/2.11.0/jackson-bom-2.11.0.pom (13 kB at 481 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.11/jackson-parent-2.11.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/jackson-parent/2.11/jackson-parent-2.11.pom (7.8 kB at 310 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/38/oss-parent-38.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/oss-parent/38/oss-parent-38.pom (23 kB at 659 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.pom (3.5 kB at 131 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.pom (4.9 kB at 128 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.jar
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.jar (1.4 MB at 5.1 MB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.jar
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.jar
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.jar (68 kB at 1.6 MB/s)
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.jar (352 kB at 2.4 MB/s)
+tests-1   | [INFO]
+tests-1   | [INFO] --- resources:3.3.1:resources (default-resources) @ teste-carbono-api ---
+tests-1   | [INFO] Copying 18 resources from src/main/resources to target/classes
+tests-1   | [INFO]
+tests-1   | [INFO] --- compiler:3.13.0:compile (default-compile) @ teste-carbono-api ---
+tests-1   | [INFO] No sources to compile
+tests-1   | [INFO]
+tests-1   | [INFO] --- resources:3.3.1:testResources (default-testResources) @ teste-carbono-api ---
+tests-1   | [INFO] skip non existing resourceDirectory /tests/src/test/resources
+tests-1   | [INFO]
+tests-1   | [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ teste-carbono-api ---
+tests-1   | [INFO] Nothing to compile - all classes are up to date.
+tests-1   | [INFO]
+tests-1   | [INFO] --- surefire:3.2.5:test (default-test) @ teste-carbono-api ---
+tests-1   | [INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/3.2.5/surefire-junit4-3.2.5.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/3.2.5/surefire-junit4-3.2.5.pom (3.0 kB at 102 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.2.5/surefire-providers-3.2.5.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.2.5/surefire-providers-3.2.5.pom (2.6 kB at 109 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit4/3.2.5/common-junit4-3.2.5.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit4/3.2.5/common-junit4-3.2.5.pom (3.1 kB at 82 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit3/3.2.5/common-junit3-3.2.5.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit3/3.2.5/common-junit3-3.2.5.pom (2.8 kB at 87 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.pom
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.pom (2.8 kB at 91 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/3.2.5/surefire-junit4-3.2.5.jar
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit4/3.2.5/surefire-junit4-3.2.5.jar (18 kB at 660 kB/s)
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit4/3.2.5/common-junit4-3.2.5.jar
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit3/3.2.5/common-junit3-3.2.5.jar
+tests-1   | [INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.5/common-java5-3.2.5.jar (18 kB at 399 kB/s)
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit4/3.2.5/common-junit4-3.2.5.jar (26 kB at 479 kB/s)
+tests-1   | [INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-junit3/3.2.5/common-junit3-3.2.5.jar (12 kB at 161 kB/s)
+api-1     | 2026-11-04T05:14:20.864Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:20.867Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+tests-1   | [INFO]
+tests-1   | [INFO] -------------------------------------------------------
+tests-1   | [INFO]  T E S T S
+tests-1   | [INFO] -------------------------------------------------------
+tests-1   | [INFO] Running runner.TestRunner
+tests-1   |
+tests-1   | @regressivo @positivo @governanca @contrato
+tests-1   | Cenário: Autenticar administrador com credenciais válidas # features/01-autenticacao.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Autenticar administrador com credenciais válidas
+tests-1   |
+api-1     | 2026-11-04T05:14:25.983Z  WARN 1 --- [carbono-api] [0.0-8080-exec-5] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]]
+api-1     | 2026-11-04T05:14:25.987Z  WARN 1 --- [carbono-api] [0.0-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] ]
+api-1     | 2026-11-04T05:14:31.076Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:31.080Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+api-1     | 2026-11-04T05:14:36.181Z  WARN 1 --- [carbono-api] [0.0-8080-exec-8] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]]
+api-1     | 2026-11-04T05:14:36.185Z  WARN 1 --- [carbono-api] [0.0-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] ]
+tests-1   |   Dado que estou autenticado como ADMIN                   # steps.CarbonoSteps.login(java.lang.String)
+tests-1   |   Então o status deve ser 200                             # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "login"          # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "role" deve ser "ADMIN"                       # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @governanca @contrato
+tests-1   | Cenário: Rejeitar senha incorreta                          # features/01-autenticacao.feature:16
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar senha incorreta
+tests-1   |
+tests-1   |   Dado que estou sem autenticação                          # steps.CarbonoSteps.anonymous()
+api-1     | 2026-11-04T05:14:37.861Z  WARN 1 --- [carbono-api] [0.0-8080-exec-9] b.c.f.c.e.GlobalExceptionHandler         : Credenciais inválidas para: /api/v1/auth/login
+api-1     | 2026-11-04T05:14:37.864Z  WARN 1 --- [carbono-api] [0.0-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.BadCredentialsException: Email ou senha inválidos]
+tests-1   |   Quando envio POST para "/auth/login" com o JSON:         # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 401                              # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve valer 401                        # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "mensagem" deve ser "Email ou senha inválidos" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @governanca @contrato
+tests-1   | Cenário: Rejeitar login com email malformado       # features/01-autenticacao.feature:28
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar login com email malformado
+tests-1   |
+tests-1   |   Dado que estou sem autenticação                  # steps.CarbonoSteps.anonymous()
+api-1     | 2026-11-04T05:14:38.106Z  WARN 1 --- [carbono-api] [.0-8080-exec-10] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest): [Field error in object 'loginRequest' on field 'email': rejected value [invalido]; codes [Email.loginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5a53eda,.*]; default message [Email deve ser válido]]
+api-1     | 2026-11-04T05:14:38.121Z  WARN 1 --- [carbono-api] [.0-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest): [Field error in object 'loginRequest' on field 'email': rejected value [invalido]; codes [Email.loginRequest.email,Email.email,Email.java.lang.String,Email]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email],[Ljakarta.validation.constraints.Pattern$Flag;@5a53eda,.*]; default message [Email deve ser válido]] ]
+tests-1   |   Quando envio POST para "/auth/login" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                      # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"    # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "email"            # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @governanca
+tests-1   | Cenário: Proteger leitura sem token              # features/01-autenticacao.feature:39
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Proteger leitura sem token
+tests-1   |
+tests-1   |   Dado que estou sem autenticação                # steps.CarbonoSteps.anonymous()
+tests-1   |   Quando envio GET para "/empresas-sustentaveis" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 403                    # steps.CarbonoSteps.status(int)
+tests-1   |
+tests-1   | @regressivo @negativo @governanca
+tests-1   | Cenário: Impedir cadastro pelo auditor                        # features/01-autenticacao.feature:45
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Impedir cadastro pelo auditor
+tests-1   |
+tests-1   |   Dado que estou autenticado como AUDITOR                     # steps.CarbonoSteps.login(java.lang.String)
+tests-1   |   Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 403                                 # steps.CarbonoSteps.status(int)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Cadastrar empresa                         # features/02-empresas.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Cadastrar empresa
+tests-1   |
+tests-1   |   Dado que estou autenticado como ADMIN            # steps.CarbonoSteps.login(java.lang.String)
+tests-1   |   Quando cadastro uma empresa exclusiva            # steps.CarbonoSteps.cadastrarEmpresa()
+tests-1   |   Então o status deve ser 201                      # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "empresa" # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "nome" deve ser "Empresa BDD"          # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "cnpj" deve ser "${cnpj}"              # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "ativa" deve ser "true"                # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Consultar empresa pelo identificador                 # features/02-empresas.feature:19
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Consultar empresa pelo identificador
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                       # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio GET para "/empresas-sustentaveis/${empresaId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "empresa"            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "id" deve ser "${empresaId}"                      # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Localizar empresa na listagem                                 # features/02-empresas.feature:27
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Localizar empresa na listagem
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                                # steps.CarbonoSteps.empresa()
+api-1     | 2026-11-04T05:14:40.865Z  WARN 1 --- [carbono-api] [.0-8080-exec-10] ration$PageModule$WarningLoggingModifier : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+api-1     |     For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+api-1     |     or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+api-1     |
+tests-1   |   Quando envio GET para "/empresas-sustentaveis?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                          # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "pagina-empresa"              # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E a página deve conter o id salvo em "empresaId"                     # steps.CarbonoSteps.containsId(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Rejeitar CNPJ duplicado                              # features/02-empresas.feature:35
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar CNPJ duplicado
+tests-1   |
+api-1     | 2026-11-04T05:14:41.278Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:41.281Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+api-1     | 2026-11-04T05:14:41.549Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] b.c.f.c.e.GlobalExceptionHandler         : Conflito de dados: Empresa com CNPJ 89.055.778/0934-98 já cadastrada
+api-1     | 2026-11-04T05:14:41.551Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.ConflictException: Empresa com CNPJ 89.055.778/0934-98 já cadastrada]
+tests-1   |   Dado que possuo uma empresa exclusiva                       # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 409                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"               # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve valer 409                           # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Validar campos obrigatórios da empresa               # features/02-empresas.feature:46
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Validar campos obrigatórios da empresa
+tests-1   |
+tests-1   |   Dado que estou autenticado como ADMIN                       # steps.CarbonoSteps.login(java.lang.String)
+api-1     | 2026-11-04T05:14:41.892Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmpresaResponse> br.com.fiap.carbonoapi.controller.EmpresaController.cadastrar(br.com.fiap.carbonoapi.dto.request.EmpresaRequest) with 4 errors: [Field error in object 'empresaRequest' on field 'cnpj': rejected value [invalido]; codes [Pattern.empresaRequest.cnpj,Pattern.cnpj,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.cnpj,cnpj]; arguments []; default message [cnpj],[Ljakarta.validation.constraints.Pattern$Flag;@c731ce9,\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}]; default message [CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX]] [Field error in object 'empresaRequest' on field 'pais': rejected value []; codes [NotBlank.empresaRequest.pais,NotBlank.pais,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.pais,pais]; arguments []; default message [pais]]; default message [País é obrigatório]] [Field error in object 'empresaRequest' on field 'setor': rejected value []; codes [NotBlank.empresaRequest.setor,NotBlank.setor,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.setor,setor]; arguments []; default message [setor]]; default message [Setor é obrigatório]] [Field error in object 'empresaRequest' on field 'nome': rejected value []; codes [NotBlank.empresaRequest.nome,NotBlank.nome,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.nome,nome]; arguments []; default message [nome]]; default message [Nome é obrigatório]]
+api-1     | 2026-11-04T05:14:41.895Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmpresaResponse> br.com.fiap.carbonoapi.controller.EmpresaController.cadastrar(br.com.fiap.carbonoapi.dto.request.EmpresaRequest) with 4 errors: [Field error in object 'empresaRequest' on field 'cnpj': rejected value [invalido]; codes [Pattern.empresaRequest.cnpj,Pattern.cnpj,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.cnpj,cnpj]; arguments []; default message [cnpj],[Ljakarta.validation.constraints.Pattern$Flag;@c731ce9,\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}]; default message [CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX]] [Field error in object 'empresaRequest' on field 'pais': rejected value []; codes [NotBlank.empresaRequest.pais,NotBlank.pais,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.pais,pais]; arguments []; default message [pais]]; default message [País é obrigatório]] [Field error in object 'empresaRequest' on field 'setor': rejected value []; codes [NotBlank.empresaRequest.setor,NotBlank.setor,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.setor,setor]; arguments []; default message [setor]]; default message [Setor é obrigatório]] [Field error in object 'empresaRequest' on field 'nome': rejected value []; codes [NotBlank.empresaRequest.nome,NotBlank.nome,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [empresaRequest.nome,nome]; arguments []; default message [nome]]; default message [Nome é obrigatório]] ]
+tests-1   |   Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"               # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "cnpj"                        # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "nome"                        # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Consultar empresa inexistente                               # features/02-empresas.feature:58
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Consultar empresa inexistente
+tests-1   |
+api-1     | 2026-11-04T05:14:42.459Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] b.c.f.c.e.GlobalExceptionHandler         : Recurso não encontrado: Empresa não encontrada com id: 9223372036854775807
+api-1     | 2026-11-04T05:14:42.465Z  WARN 1 --- [carbono-api] [0.0-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.ResourceNotFoundException: Empresa não encontrada com id: 9223372036854775807]
+tests-1   |   Dado que estou autenticado como ADMIN                              # steps.CarbonoSteps.login(java.lang.String)
+tests-1   |   Quando envio GET para "/empresas-sustentaveis/9223372036854775807" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 404                                        # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                      # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve valer 404                                  # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Registrar emissão de carbono              # features/03-emissoes.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Registrar emissão de carbono
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva            # steps.CarbonoSteps.empresa()
+tests-1   |   Quando registro uma emissão de 100 tCO2e         # steps.CarbonoSteps.registrarEmissao(double)
+tests-1   |   Então o status deve ser 201                      # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "emissao" # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   Então o campo "quantidadeTco2e" deve valer 100   # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "empresaId" deve ser "${empresaId}"    # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "escopo" deve ser "ESCOPO_1"           # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Localizar emissão na listagem                            # features/03-emissoes.feature:19
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Localizar emissão na listagem
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                           # steps.CarbonoSteps.empresa()
+tests-1   |   E que registrei uma emissão de 100 tCO2e                        # steps.CarbonoSteps.emissao(double)
+tests-1   |   Quando envio GET para "/emissoes-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                     # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "pagina-emissao"         # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E a página deve conter o id salvo em "emissaoId"                # steps.CarbonoSteps.containsId(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Consultar histórico de emissões da empresa        # features/03-emissoes.feature:28
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Consultar histórico de emissões da empresa
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                    # steps.CarbonoSteps.empresa()
+tests-1   |   E que registrei uma emissão de 100 tCO2e                 # steps.CarbonoSteps.emissao(double)
+tests-1   |   Quando envio GET para "/historico-emissoes/${empresaId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                              # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "pagina-emissao"  # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E a página deve conter o id salvo em "emissaoId"         # steps.CarbonoSteps.containsId(java.lang.String)
+tests-1   |   E a página deve pertencer à empresa exclusiva            # steps.CarbonoSteps.owner()
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Esquema do Cenário: Rejeitar emissão com valor negativo   # features/03-emissoes.feature:50
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar emissão com valor negativo
+tests-1   |
+api-1     | 2026-11-04T05:14:45.853Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmissaoCarbonoResponse> br.com.fiap.carbonoapi.controller.EmissaoCarbonoController.registrar(br.com.fiap.carbonoapi.dto.request.EmissaoCarbonoRequest): [Field error in object 'emissaoCarbonoRequest' on field 'quantidadeTco2e': rejected value [-1]; codes [DecimalMin.emissaoCarbonoRequest.quantidadeTco2e,DecimalMin.quantidadeTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [emissaoCarbonoRequest.quantidadeTco2e,quantidadeTco2e]; arguments []; default message [quantidadeTco2e],true,0.0001]; default message [Quantidade deve ser maior que zero]]
+api-1     | 2026-11-04T05:14:45.856Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmissaoCarbonoResponse> br.com.fiap.carbonoapi.controller.EmissaoCarbonoController.registrar(br.com.fiap.carbonoapi.dto.request.EmissaoCarbonoRequest): [Field error in object 'emissaoCarbonoRequest' on field 'quantidadeTco2e': rejected value [-1]; codes [DecimalMin.emissaoCarbonoRequest.quantidadeTco2e,DecimalMin.quantidadeTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [emissaoCarbonoRequest.quantidadeTco2e,quantidadeTco2e]; arguments []; default message [quantidadeTco2e],true,0.0001]; default message [Quantidade deve ser maior que zero]] ]
+tests-1   |   Dado que possuo uma empresa exclusiva                   # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                             # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "quantidadeTco2e"         # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Esquema do Cenário: Rejeitar emissão com data futura      # features/03-emissoes.feature:51
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar emissão com data futura
+tests-1   |
+api-1     | 2026-11-04T05:14:46.381Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:46.384Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+api-1     | 2026-11-04T05:14:46.386Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmissaoCarbonoResponse> br.com.fiap.carbonoapi.controller.EmissaoCarbonoController.registrar(br.com.fiap.carbonoapi.dto.request.EmissaoCarbonoRequest): [Field error in object 'emissaoCarbonoRequest' on field 'dataEmissao': rejected value [2026-12-04]; codes [PastOrPresent.emissaoCarbonoRequest.dataEmissao,PastOrPresent.dataEmissao,PastOrPresent.java.time.LocalDate,PastOrPresent]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [emissaoCarbonoRequest.dataEmissao,dataEmissao]; arguments []; default message [dataEmissao]]; default message [Data da emissão não pode ser futura]]
+api-1     | 2026-11-04T05:14:46.389Z  WARN 1 --- [carbono-api] [0.0-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.EmissaoCarbonoResponse> br.com.fiap.carbonoapi.controller.EmissaoCarbonoController.registrar(br.com.fiap.carbonoapi.dto.request.EmissaoCarbonoRequest): [Field error in object 'emissaoCarbonoRequest' on field 'dataEmissao': rejected value [2026-12-04]; codes [PastOrPresent.emissaoCarbonoRequest.dataEmissao,PastOrPresent.dataEmissao,PastOrPresent.java.time.LocalDate,PastOrPresent]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [emissaoCarbonoRequest.dataEmissao,dataEmissao]; arguments []; default message [dataEmissao]]; default message [Data da emissão não pode ser futura]] ]
+tests-1   |   Dado que possuo uma empresa exclusiva                   # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                             # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "dataEmissao"             # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Rejeitar emissão para empresa inexistente        # features/03-emissoes.feature:54
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar emissão para empresa inexistente
+tests-1   |
+api-1     | 2026-11-04T05:14:46.727Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] b.c.f.c.e.GlobalExceptionHandler         : Recurso não encontrado: Empresa não encontrada com id: 9223372036854775807
+api-1     | 2026-11-04T05:14:46.728Z  WARN 1 --- [carbono-api] [0.0-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.ResourceNotFoundException: Empresa não encontrada com id: 9223372036854775807]
+tests-1   |   Dado que estou autenticado como ADMIN                   # steps.CarbonoSteps.login(java.lang.String)
+tests-1   |   Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 404                             # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Criar plano de redução                        # features/04-agendamentos.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Criar plano de redução
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                # steps.CarbonoSteps.empresa()
+tests-1   |   Quando cadastro um agendamento exclusivo             # steps.CarbonoSteps.cadastrarAgendamento()
+tests-1   |   Então o status deve ser 201                          # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "agendamento" # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve ser "PENDENTE"               # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "metaReducaoTco2e" deve valer 25           # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Localizar plano na listagem                                         # features/04-agendamentos.feature:18
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Localizar plano na listagem
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                                   # steps.CarbonoSteps.agendamento()
+tests-1   |   Quando envio GET para "/agendamento-reducao-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                                # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "pagina-agendamento"                # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E a página deve conter o id salvo em "agendamentoId"                       # steps.CarbonoSteps.containsId(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Atualizar plano de redução                                                 # features/04-agendamentos.feature:26
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Atualizar plano de redução
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                                          # steps.CarbonoSteps.agendamento()
+tests-1   |   Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                                       # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "agendamento"                              # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve ser "EM_ANDAMENTO"                                        # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "titulo" deve ser "Plano atualizado"                                    # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "metaReducaoTco2e" deve valer 30                                        # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Cancelar plano de redução                                         # features/04-agendamentos.feature:39
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Cancelar plano de redução
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                                 # steps.CarbonoSteps.agendamento()
+tests-1   |   Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 204                                              # steps.CarbonoSteps.status(int)
+tests-1   |   E o corpo deve estar vazio                                               # steps.CarbonoSteps.empty()
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Consultar situação de plano cancelado                # features/04-agendamentos.feature:46
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Consultar situação de plano cancelado
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+tests-1   |   E que o agendamento está cancelado                          # steps.CarbonoSteps.cancelado()
+tests-1   |   Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "status" deve ser "CANCELADO"                     # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Impedir novo cancelamento                                         # features/04-agendamentos.feature:55
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Impedir novo cancelamento
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                                 # steps.CarbonoSteps.agendamento()
+api-1     | 2026-11-04T05:14:51.051Z  WARN 1 --- [carbono-api] [.0-8080-exec-10] b.c.f.c.e.GlobalExceptionHandler         : Regra de negócio violada: Agendamento já está cancelado
+api-1     | 2026-11-04T05:14:51.053Z  WARN 1 --- [carbono-api] [.0-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.BusinessException: Agendamento já está cancelado]
+tests-1   |   E que o agendamento está cancelado                                       # steps.CarbonoSteps.cancelado()
+tests-1   |   Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 422                                              # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "mensagem" deve ser "Agendamento já está cancelado"            # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Impedir atualização de plano cancelado                                     # features/04-agendamentos.feature:64
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Impedir atualização de plano cancelado
+tests-1   |
+api-1     | 2026-11-04T05:14:51.484Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:14:51.486Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+tests-1   |   Dado que possuo um agendamento exclusivo                                          # steps.CarbonoSteps.agendamento()
+api-1     | 2026-11-04T05:14:52.001Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] b.c.f.c.e.GlobalExceptionHandler         : Regra de negócio violada: Não é possível atualizar um agendamento cancelado
+api-1     | 2026-11-04T05:14:52.004Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.BusinessException: Não é possível atualizar um agendamento cancelado]
+tests-1   |   E que o agendamento está cancelado                                                # steps.CarbonoSteps.cancelado()
+tests-1   |   Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 422                                                       # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                                     # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "mensagem" deve ser "Não é possível atualizar um agendamento cancelado" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Rejeitar fim anterior ao início                                                # features/04-agendamentos.feature:76
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar fim anterior ao início
+tests-1   |
+api-1     | 2026-11-04T05:14:52.574Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] b.c.f.c.e.GlobalExceptionHandler         : Regra de negócio violada: Data fim prevista deve ser posterior à data de início
+api-1     | 2026-11-04T05:14:52.576Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.BusinessException: Data fim prevista deve ser posterior à data de início]
+tests-1   |   Dado que possuo uma empresa exclusiva                                                 # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/agendamento-reducao-carbono" com o JSON:                     # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 422                                                           # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                                         # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "mensagem" deve ser "Data fim prevista deve ser posterior à data de início" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Rejeitar meta zero                                         # features/04-agendamentos.feature:87
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar meta zero
+tests-1   |
+api-1     | 2026-11-04T05:14:53.204Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.AgendamentoReducaoResponse> br.com.fiap.carbonoapi.controller.AgendamentoReducaoController.agendar(br.com.fiap.carbonoapi.dto.request.AgendamentoReducaoRequest): [Field error in object 'agendamentoReducaoRequest' on field 'metaReducaoTco2e': rejected value [0]; codes [DecimalMin.agendamentoReducaoRequest.metaReducaoTco2e,DecimalMin.metaReducaoTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [agendamentoReducaoRequest.metaReducaoTco2e,metaReducaoTco2e]; arguments []; default message [metaReducaoTco2e],true,0.0001]; default message [Meta deve ser maior que zero]]
+api-1     | 2026-11-04T05:14:53.207Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.AgendamentoReducaoResponse> br.com.fiap.carbonoapi.controller.AgendamentoReducaoController.agendar(br.com.fiap.carbonoapi.dto.request.AgendamentoReducaoRequest): [Field error in object 'agendamentoReducaoRequest' on field 'metaReducaoTco2e': rejected value [0]; codes [DecimalMin.agendamentoReducaoRequest.metaReducaoTco2e,DecimalMin.metaReducaoTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [agendamentoReducaoRequest.metaReducaoTco2e,metaReducaoTco2e]; arguments []; default message [metaReducaoTco2e],true,0.0001]; default message [Meta deve ser maior que zero]] ]
+tests-1   |   Dado que possuo uma empresa exclusiva                             # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/agendamento-reducao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                                       # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                     # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "metaReducaoTco2e"                  # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Registrar compensação de carbono              # features/05-compensacoes.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Registrar compensação de carbono
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                # steps.CarbonoSteps.empresa()
+tests-1   |   Quando registro uma compensação de 40 tCO2e          # steps.CarbonoSteps.registrarCompensacao(double)
+tests-1   |   Então o status deve ser 201                          # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "compensacao" # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   Então o campo "quantidadeTco2e" deve valer 40        # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "empresaId" deve ser "${empresaId}"        # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "tipo" deve ser "REFLORESTAMENTO"          # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Localizar compensação na listagem                           # features/05-compensacoes.feature:19
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Localizar compensação na listagem
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                              # steps.CarbonoSteps.empresa()
+tests-1   |   E que registrei uma compensação de 40 tCO2e                        # steps.CarbonoSteps.compensacao(double)
+tests-1   |   Quando envio GET para "/compensacao-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                        # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "pagina-compensacao"        # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E a página deve conter o id salvo em "compensacaoId"               # steps.CarbonoSteps.containsId(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Esquema do Cenário: Rejeitar compensação com valor negativo # features/05-compensacoes.feature:40
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar compensação com valor negativo
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                     # steps.CarbonoSteps.empresa()
+api-1     | 2026-11-04T05:14:55.143Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.CompensacaoCarbonoResponse> br.com.fiap.carbonoapi.controller.CompensacaoCarbonoController.cadastrar(br.com.fiap.carbonoapi.dto.request.CompensacaoCarbonoRequest): [Field error in object 'compensacaoCarbonoRequest' on field 'quantidadeTco2e': rejected value [-1]; codes [DecimalMin.compensacaoCarbonoRequest.quantidadeTco2e,DecimalMin.quantidadeTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compensacaoCarbonoRequest.quantidadeTco2e,quantidadeTco2e]; arguments []; default message [quantidadeTco2e],true,0.0001]; default message [Quantidade deve ser maior que zero]]
+api-1     | 2026-11-04T05:14:55.147Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.CompensacaoCarbonoResponse> br.com.fiap.carbonoapi.controller.CompensacaoCarbonoController.cadastrar(br.com.fiap.carbonoapi.dto.request.CompensacaoCarbonoRequest): [Field error in object 'compensacaoCarbonoRequest' on field 'quantidadeTco2e': rejected value [-1]; codes [DecimalMin.compensacaoCarbonoRequest.quantidadeTco2e,DecimalMin.quantidadeTco2e,DecimalMin.java.math.BigDecimal,DecimalMin]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compensacaoCarbonoRequest.quantidadeTco2e,quantidadeTco2e]; arguments []; default message [quantidadeTco2e],true,0.0001]; default message [Quantidade deve ser maior que zero]] ]
+tests-1   |   Quando envio POST para "/compensacao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                               # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"             # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "quantidadeTco2e"           # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Esquema do Cenário: Rejeitar compensação com data futura    # features/05-compensacoes.feature:41
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Rejeitar compensação com data futura
+tests-1   |
+api-1     | 2026-11-04T05:14:55.703Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.CompensacaoCarbonoResponse> br.com.fiap.carbonoapi.controller.CompensacaoCarbonoController.cadastrar(br.com.fiap.carbonoapi.dto.request.CompensacaoCarbonoRequest): [Field error in object 'compensacaoCarbonoRequest' on field 'dataCompensacao': rejected value [2026-12-04]; codes [PastOrPresent.compensacaoCarbonoRequest.dataCompensacao,PastOrPresent.dataCompensacao,PastOrPresent.java.time.LocalDate,PastOrPresent]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compensacaoCarbonoRequest.dataCompensacao,dataCompensacao]; arguments []; default message [dataCompensacao]]; default message [Data da compensação não pode ser futura]]
+api-1     | 2026-11-04T05:14:55.705Z  WARN 1 --- [carbono-api] [0.0-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.CompensacaoCarbonoResponse> br.com.fiap.carbonoapi.controller.CompensacaoCarbonoController.cadastrar(br.com.fiap.carbonoapi.dto.request.CompensacaoCarbonoRequest): [Field error in object 'compensacaoCarbonoRequest' on field 'dataCompensacao': rejected value [2026-12-04]; codes [PastOrPresent.compensacaoCarbonoRequest.dataCompensacao,PastOrPresent.dataCompensacao,PastOrPresent.java.time.LocalDate,PastOrPresent]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [compensacaoCarbonoRequest.dataCompensacao,dataCompensacao]; arguments []; default message [dataCompensacao]]; default message [Data da compensação não pode ser futura]] ]
+tests-1   |   Dado que possuo uma empresa exclusiva                     # steps.CarbonoSteps.empresa()
+tests-1   |   Quando envio POST para "/compensacao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 400                               # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"             # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o erro deve apontar o campo "dataCompensacao"           # steps.CarbonoSteps.invalidField(java.lang.String)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Conferir saldo por diferença de totais         # features/06-indicadores.feature:9
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Conferir saldo por diferença de totais
+tests-1   |
+tests-1   |   Dado que possuo uma empresa exclusiva                 # steps.CarbonoSteps.empresa()
+tests-1   |   E que capturei o saldo líquido inicial                # steps.CarbonoSteps.baseline()
+tests-1   |   E que registrei uma emissão de 100 tCO2e              # steps.CarbonoSteps.emissao(double)
+api-1     | 2026-11-04T05:14:56.578Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]]
+api-1     | 2026-11-04T05:14:56.580Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] ]
+tests-1   |   E que registrei uma compensação de 40 tCO2e           # steps.CarbonoSteps.compensacao(double)
+tests-1   |   Quando envio GET para "/indicadores-sustentabilidade" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                           # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "indicadores"  # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o saldo líquido deve aumentar 60 tCO2e              # steps.CarbonoSteps.delta(double)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Calcular impacto de meta sobre emissão da empresa    # features/06-indicadores.feature:20
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Calcular impacto de meta sobre emissão da empresa
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+tests-1   |   E que registrei uma emissão de 100 tCO2e                    # steps.CarbonoSteps.emissao(double)
+tests-1   |   Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "agendamentoId" deve ser "${agendamentoId}"       # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+tests-1   |   E o campo "metaReducaoTco2e" deve valer 25                  # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "totalEmitidoEmpresa" deve valer 100              # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "percentualImpacto" deve valer 25                 # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @positivo @esg @contrato
+tests-1   | Cenário: Retornar impacto zero sem emissões                   # features/06-indicadores.feature:32
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Retornar impacto zero sem emissões
+tests-1   |
+tests-1   |   Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+tests-1   |   Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |   E o campo "totalEmitidoEmpresa" deve valer 0                # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |   E o campo "percentualImpacto" deve valer 0                  # steps.CarbonoSteps.number(java.lang.String,double)
+tests-1   |
+tests-1   | @regressivo @negativo @esg @contrato
+tests-1   | Cenário: Consultar impacto de agendamento inexistente            # features/06-indicadores.feature:41
+tests-1   |
+tests-1   |     Execução HTTP real; credenciais e JWT não são anexados. Cenário: Consultar impacto de agendamento inexistente
+tests-1   |
+api-1     | 2026-11-04T05:14:58.733Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] b.c.f.c.e.GlobalExceptionHandler         : Recurso não encontrado: Agendamento não encontrado com id: 9223372036854775807
+tests-1   |   Dado que estou autenticado como ADMIN                          # steps.CarbonoSteps.login(java.lang.String)
+api-1     | 2026-11-04T05:14:58.734Z  WARN 1 --- [carbono-api] [0.0-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.fiap.carbonoapi.exception.ResourceNotFoundException: Agendamento não encontrado com id: 9223372036854775807]
+tests-1   |   Quando envio GET para "/impacto-mitigacao/9223372036854775807" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+tests-1   |   Então o status deve ser 404                                    # steps.CarbonoSteps.status(int)
+tests-1   |   E a resposta deve respeitar o contrato "erro"                  # steps.CarbonoSteps.schema(java.lang.String)
+tests-1   |
+tests-1   | 34 Scenarios (34 passed)
+tests-1   | 188 Steps (188 passed)
+tests-1   | 0m33.785s
+tests-1   |
+tests-1   |
+tests-1   | [INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 36.88 s -- in runner.TestRunner
+tests-1   | [INFO]
+tests-1   | [INFO] Results:
+tests-1   | [INFO]
+tests-1   | [INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0
+tests-1   | [INFO]
+tests-1   | [INFO] ------------------------------------------------------------------------
+tests-1   | [INFO] BUILD SUCCESS
+tests-1   | [INFO] ------------------------------------------------------------------------
+tests-1   | [INFO] Total time:  48.412 s
+tests-1   | [INFO] Finished at: 2026-11-04T05:14:59Z
+tests-1   | [INFO] ------------------------------------------------------------------------
+api-1     | 2026-11-04T05:15:01.658Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] b.c.f.c.e.GlobalExceptionHandler         : Erro de validação: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]]
+api-1     | 2026-11-04T05:15:01.660Z  WARN 1 --- [carbono-api] [0.0-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<br.com.fiap.carbonoapi.dto.response.LoginResponse> br.com.fiap.carbonoapi.controller.AuthController.login(br.com.fiap.carbonoapi.dto.request.LoginRequest) with 2 errors: [Field error in object 'loginRequest' on field 'senha': rejected value [null]; codes [NotBlank.loginRequest.senha,NotBlank.senha,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.senha,senha]; arguments []; default message [senha]]; default message [Senha é obrigatória]] [Field error in object 'loginRequest' on field 'email': rejected value [null]; codes [NotBlank.loginRequest.email,NotBlank.email,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [loginRequest.email,email]; arguments []; default message [email]]; default message [Email é obrigatório]] ]
+tests-1 exited with code 0
+ Compose Stopping Aborting on container exit...
+ Container teste-carbono-oracle-bdd-tests-1 Stopping
+ Container teste-carbono-oracle-bdd-tests-1 Stopped
+ Container teste-carbono-oracle-bdd-api-1 Stopping
+api-1     | 2026-11-04T05:15:02.101Z  INFO 1 --- [carbono-api] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+api-1     | 2026-11-04T05:15:02.109Z  INFO 1 --- [carbono-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+api-1     | 2026-11-04T05:15:02.122Z  INFO 1 --- [carbono-api] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+api-1     | 2026-11-04T05:15:02.133Z  INFO 1 --- [carbono-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+api-1     | 2026-11-04T05:15:02.188Z  INFO 1 --- [carbono-api] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+ Container teste-carbono-oracle-bdd-api-1 Stopped
+ Container teste-carbono-oracle-bdd-oracle-1 Stopping
+api-1 exited with code 143
+oracle-1  | CONTAINER: shutdown request received.
+oracle-1  | CONTAINER: shutting down database!
+oracle-1  |
+oracle-1  | LSNRCTL for Linux: Version 23.26.3.0.0 - Production on 04-NOV-2026 05:15:05
+oracle-1  |
+oracle-1  | Copyright (c) 1991, 2026, Oracle.  All rights reserved.
+oracle-1  |
+oracle-1  | Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC_FOR_FREE)))
+oracle-1  | The command completed successfully
+oracle-1  | 2026-11-04T05:15:05.320156+00:00
+oracle-1  | Shutting down ORACLE instance (immediate) (OS id: 809)
+oracle-1  | Shutdown is initiated by sqlplus@0cb2e6655c15 (TNS V1-V3).
+oracle-1  | Stopping background process SMCO.
+oracle-1  | Shutting down instance: further logons disabled
+oracle-1  | 2026-11-04T05:15:34.432720+00:00
+oracle-1  | Stopping background process CJQ0
+oracle-1  | 2026-11-04T05:15:34.479766+00:00
+oracle-1  | Killed process oracle@0cb2e6655c15 (Q004) with pid is 87, OS pid 588
+oracle-1  | 2026-11-04T05:15:34.479959+00:00
+oracle-1  | Killed process oracle@0cb2e6655c15 (Q002) with pid is 85, OS pid 584
+oracle-1  | Stopping background process MMNL.
+oracle-1  | 2026-11-04T05:15:34.481198+00:00
+oracle-1  | Process termination requested for pid 588 (Q004) [source = rdbms], [info = 2] [request issued by pid: 809, uid: 54321]
+oracle-1  | 2026-11-04T05:15:34.481592+00:00
+oracle-1  | Process termination requested for pid 584 (Q002) [source = rdbms], [info = 2] [request issued by pid: 809, uid: 54321]
+oracle-1  | Stopping background process MMON.
+oracle-1  | alter pluggable database all close immediate
+oracle-1  | 2026-11-04T05:15:34.713404+00:00
+oracle-1  | FREEPDB1(3):JIT: pid 809 requesting stop
+oracle-1  | 2026-11-04T05:15:34.721556+00:00
+oracle-1  | FREEPDB1(3):Stopped service freepdb1
+oracle-1  | 2026-11-04T05:15:46.269291+00:00
+oracle-1  | Completed: Pluggable database FREEPDB1 closed services=None
+oracle-1  | Completed: alter pluggable database all close immediate
+oracle-1  | PDB$SEED(2):JIT: pid 809 requesting stop
+oracle-1  | License high water mark = 12
+oracle-1  |
+oracle-1  | Data Pump shutdown in progress
+oracle-1  | ALTER DATABASE CLOSE NORMAL
+oracle-1  | alter pluggable database all close immediate
+oracle-1  | Completed: alter pluggable database all close immediate
+oracle-1  | alter pluggable database all close immediate
+oracle-1  | Completed: alter pluggable database all close immediate
+oracle-1  | Stopping change tracking
+oracle-1  | 2026-11-04T05:15:51.258722+00:00
+oracle-1  | Thread 1 closed at log sequence 14
+oracle-1  | Successful close of redo thread 1
+oracle-1  | 2026-11-04T05:15:51.576802+00:00
+oracle-1  | Completed: ALTER DATABASE CLOSE NORMAL
+oracle-1  | Database closed.
+oracle-1  | 2026-11-04T05:15:52.619792+00:00
+oracle-1  | ALTER DATABASE DISMOUNT
+oracle-1  | 2026-11-04T05:15:53.743955+00:00
+oracle-1  | Completed: ALTER DATABASE DISMOUNT
+oracle-1  | Database dismounted.
+oracle-1  | 2026-11-04T05:15:55.911808+00:00
+oracle-1  | JIT: pid 809 requesting stop
+oracle-1  | JIT: pid 809 requesting stop
+oracle-1  | ORACLE instance shut down.
+oracle-1  | 2026-11-04T05:15:56.754069+00:00
+oracle-1  | Instance shutdown complete (OS id: 809)
+oracle-1  | CONTAINER: stopping container.
+ Container teste-carbono-oracle-bdd-oracle-1 Stopped
+oracle-1 exited with code 143
+Evidências: /c/Users/Danilo Chaves/Downloads/TestesAutomatizadosCarbonoApi_Oracle/teste-carbono-api/evidencias/oracle/20261104-020618
+Para remover os contêineres, mantendo o banco: docker compose -f compose.oracle.yaml down

@@ -1,0 +1,27 @@
+# Somente para banco efêmero de testes; não usar em produção.
+spring:
+  datasource:
+    url: jdbc:h2:mem:carbonobdd;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+    show-sql: false
+  flyway:
+    enabled: false
+  sql:
+    init:
+      mode: always
+      data-locations: file:${BDD_CONFIG_DIR:./config}/data-bdd.sql
+server:
+  address: 0.0.0.0
+  port: 8080
+  servlet:
+    context-path: /api/v1
+jwt:
+  secret: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  expiration: 3600000

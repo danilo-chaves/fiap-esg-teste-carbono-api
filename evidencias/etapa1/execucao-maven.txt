@@ -1,0 +1,443 @@
+$ bash scripts/run-local.sh 2>&1 | tee evidencias/etapa1/execucao-maven.txt
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -------------------< br.com.fiap:teste-carbono-api >--------------------
+[INFO] Building teste-carbono-api 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/maven-metadata.xml
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/messages/maven-metadata.xml (3.6 kB at 3.5 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/io/cucumber/query/maven-metadata.xml
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/io/cucumber/query/maven-metadata.xml (1.3 kB at 28 kB/s)
+[INFO]
+[INFO] --- resources:3.4.0:resources (default-resources) @ teste-carbono-api ---
+[INFO] Copying 18 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ teste-carbono-api ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ teste-carbono-api ---
+[INFO] skip non existing resourceDirectory C:\Users\Danilo Chaves\Downloads\TestesAutomatizadosCarbonoApi_Etapa1\teste-carbono-api\src\test\resources
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ teste-carbono-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 4 source files with javac [debug release 21] to target\test-classes
+[INFO]
+[INFO] --- surefire:3.2.5:test (default-test) @ teste-carbono-api ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junit4.JUnit4Provider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running runner.TestRunner
+
+@regressivo @positivo @governanca @contrato
+Cenrio: Autenticar administrador com credenciais vlidas # features/01-autenticacao.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Autenticar administrador com credenciais vlidas
+
+  Dado que estou autenticado como ADMIN                   # steps.CarbonoSteps.login(java.lang.String)
+  Ento o status deve ser 200                             # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "login"          # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "role" deve ser "ADMIN"                       # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @governanca @contrato
+Cenrio: Rejeitar senha incorreta                          # features/01-autenticacao.feature:16
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar senha incorreta
+
+  Dado que estou sem autenticao                          # steps.CarbonoSteps.anonymous()
+  Quando envio POST para "/auth/login" com o JSON:         # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 401                              # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve valer 401                        # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "mensagem" deve ser "Email ou senha invlidos" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @governanca @contrato
+Cenrio: Rejeitar login com email malformado       # features/01-autenticacao.feature:28
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar login com email malformado
+
+  Dado que estou sem autenticao                  # steps.CarbonoSteps.anonymous()
+  Quando envio POST para "/auth/login" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                      # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"    # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "email"            # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @negativo @governanca
+Cenrio: Proteger leitura sem token              # features/01-autenticacao.feature:39
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Proteger leitura sem token
+
+  Dado que estou sem autenticao                # steps.CarbonoSteps.anonymous()
+  Quando envio GET para "/empresas-sustentaveis" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 403                    # steps.CarbonoSteps.status(int)
+
+@regressivo @negativo @governanca
+Cenrio: Impedir cadastro pelo auditor                        # features/01-autenticacao.feature:45
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Impedir cadastro pelo auditor
+
+  Dado que estou autenticado como AUDITOR                     # steps.CarbonoSteps.login(java.lang.String)
+  Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 403                                 # steps.CarbonoSteps.status(int)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Cadastrar empresa                         # features/02-empresas.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Cadastrar empresa
+
+  Dado que estou autenticado como ADMIN            # steps.CarbonoSteps.login(java.lang.String)
+  Quando cadastro uma empresa exclusiva            # steps.CarbonoSteps.cadastrarEmpresa()
+  Ento o status deve ser 201                      # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "empresa" # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "nome" deve ser "Empresa BDD"          # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "cnpj" deve ser "${cnpj}"              # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "ativa" deve ser "true"                # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Consultar empresa pelo identificador                 # features/02-empresas.feature:19
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Consultar empresa pelo identificador
+
+  Dado que possuo uma empresa exclusiva                       # steps.CarbonoSteps.empresa()
+  Quando envio GET para "/empresas-sustentaveis/${empresaId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "empresa"            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "id" deve ser "${empresaId}"                      # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Localizar empresa na listagem                                 # features/02-empresas.feature:27
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Localizar empresa na listagem
+
+  Dado que possuo uma empresa exclusiva                                # steps.CarbonoSteps.empresa()
+  Quando envio GET para "/empresas-sustentaveis?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                          # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "pagina-empresa"              # steps.CarbonoSteps.schema(java.lang.String)
+  E a pgina deve conter o id salvo em "empresaId"                     # steps.CarbonoSteps.containsId(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Rejeitar CNPJ duplicado                              # features/02-empresas.feature:35
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar CNPJ duplicado
+
+  Dado que possuo uma empresa exclusiva                       # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 409                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"               # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve valer 409                           # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Validar campos obrigatrios da empresa               # features/02-empresas.feature:46
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Validar campos obrigatrios da empresa
+
+  Dado que estou autenticado como ADMIN                       # steps.CarbonoSteps.login(java.lang.String)
+  Quando envio POST para "/empresas-sustentaveis" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"               # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "cnpj"                        # steps.CarbonoSteps.invalidField(java.lang.String)
+  E o erro deve apontar o campo "nome"                        # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Consultar empresa inexistente                               # features/02-empresas.feature:58
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Consultar empresa inexistente
+
+  Dado que estou autenticado como ADMIN                              # steps.CarbonoSteps.login(java.lang.String)
+  Quando envio GET para "/empresas-sustentaveis/9223372036854775807" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 404                                        # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                      # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve valer 404                                  # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Registrar emisso de carbono              # features/03-emissoes.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Registrar emisso de carbono
+
+  Dado que possuo uma empresa exclusiva            # steps.CarbonoSteps.empresa()
+  Quando registro uma emisso de 100 tCO2e         # steps.CarbonoSteps.registrarEmissao(double)
+  Ento o status deve ser 201                      # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "emissao" # steps.CarbonoSteps.schema(java.lang.String)
+  Ento o campo "quantidadeTco2e" deve valer 100   # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "empresaId" deve ser "${empresaId}"    # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "escopo" deve ser "ESCOPO_1"           # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Localizar emisso na listagem                            # features/03-emissoes.feature:19
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Localizar emisso na listagem
+
+  Dado que possuo uma empresa exclusiva                           # steps.CarbonoSteps.empresa()
+  E que registrei uma emisso de 100 tCO2e                        # steps.CarbonoSteps.emissao(double)
+  Quando envio GET para "/emissoes-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                     # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "pagina-emissao"         # steps.CarbonoSteps.schema(java.lang.String)
+  E a pgina deve conter o id salvo em "emissaoId"                # steps.CarbonoSteps.containsId(java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Consultar histrico de emisses da empresa        # features/03-emissoes.feature:28
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Consultar histrico de emisses da empresa
+
+  Dado que possuo uma empresa exclusiva                    # steps.CarbonoSteps.empresa()
+  E que registrei uma emisso de 100 tCO2e                 # steps.CarbonoSteps.emissao(double)
+  Quando envio GET para "/historico-emissoes/${empresaId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                              # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "pagina-emissao"  # steps.CarbonoSteps.schema(java.lang.String)
+  E a pgina deve conter o id salvo em "emissaoId"         # steps.CarbonoSteps.containsId(java.lang.String)
+  E a pgina deve pertencer  empresa exclusiva            # steps.CarbonoSteps.owner()
+
+@regressivo @negativo @esg @contrato
+Esquema do Cenrio: Rejeitar emisso com valor negativo   # features/03-emissoes.feature:50
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar emisso com valor negativo
+
+  Dado que possuo uma empresa exclusiva                   # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                             # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "quantidadeTco2e"         # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Esquema do Cenrio: Rejeitar emisso com data futura      # features/03-emissoes.feature:51
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar emisso com data futura
+
+  Dado que possuo uma empresa exclusiva                   # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                             # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "dataEmissao"             # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Rejeitar emisso para empresa inexistente        # features/03-emissoes.feature:54
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar emisso para empresa inexistente
+
+  Dado que estou autenticado como ADMIN                   # steps.CarbonoSteps.login(java.lang.String)
+  Quando envio POST para "/relatorio-emissao" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 404                             # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"           # steps.CarbonoSteps.schema(java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Criar plano de reduo                        # features/04-agendamentos.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Criar plano de reduo
+
+  Dado que possuo uma empresa exclusiva                # steps.CarbonoSteps.empresa()
+  Quando cadastro um agendamento exclusivo             # steps.CarbonoSteps.cadastrarAgendamento()
+  Ento o status deve ser 201                          # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "agendamento" # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve ser "PENDENTE"               # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "metaReducaoTco2e" deve valer 25           # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Localizar plano na listagem                                         # features/04-agendamentos.feature:18
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Localizar plano na listagem
+
+  Dado que possuo um agendamento exclusivo                                   # steps.CarbonoSteps.agendamento()
+  Quando envio GET para "/agendamento-reducao-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                                # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "pagina-agendamento"                # steps.CarbonoSteps.schema(java.lang.String)
+  E a pgina deve conter o id salvo em "agendamentoId"                       # steps.CarbonoSteps.containsId(java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Atualizar plano de reduo                                                 # features/04-agendamentos.feature:26
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Atualizar plano de reduo
+
+  Dado que possuo um agendamento exclusivo                                          # steps.CarbonoSteps.agendamento()
+  Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                                       # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "agendamento"                              # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve ser "EM_ANDAMENTO"                                        # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "titulo" deve ser "Plano atualizado"                                    # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "metaReducaoTco2e" deve valer 30                                        # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Cancelar plano de reduo                                         # features/04-agendamentos.feature:39
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Cancelar plano de reduo
+
+  Dado que possuo um agendamento exclusivo                                 # steps.CarbonoSteps.agendamento()
+  Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 204                                              # steps.CarbonoSteps.status(int)
+  E o corpo deve estar vazio                                               # steps.CarbonoSteps.empty()
+
+@regressivo @positivo @esg @contrato
+Cenrio: Consultar situao de plano cancelado                # features/04-agendamentos.feature:46
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Consultar situao de plano cancelado
+
+  Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+  E que o agendamento est cancelado                          # steps.CarbonoSteps.cancelado()
+  Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "status" deve ser "CANCELADO"                     # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Impedir novo cancelamento                                         # features/04-agendamentos.feature:55
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Impedir novo cancelamento
+
+  Dado que possuo um agendamento exclusivo                                 # steps.CarbonoSteps.agendamento()
+  E que o agendamento est cancelado                                       # steps.CarbonoSteps.cancelado()
+  Quando envio DELETE para "/agendamento-reducao-carbono/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 422                                              # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "mensagem" deve ser "Agendamento j est cancelado"            # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Impedir atualizao de plano cancelado                                     # features/04-agendamentos.feature:64
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Impedir atualizao de plano cancelado
+
+  Dado que possuo um agendamento exclusivo                                          # steps.CarbonoSteps.agendamento()
+  E que o agendamento est cancelado                                                # steps.CarbonoSteps.cancelado()
+  Quando envio PUT para "/agendamento-reducao-carbono/${agendamentoId}" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 422                                                       # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                                     # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "mensagem" deve ser "No  possvel atualizar um agendamento cancelado" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Rejeitar fim anterior ao incio                                                # features/04-agendamentos.feature:76
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar fim anterior ao incio
+
+  Dado que possuo uma empresa exclusiva                                                 # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/agendamento-reducao-carbono" com o JSON:                     # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 422                                                           # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                                         # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "mensagem" deve ser "Data fim prevista deve ser posterior  data de incio" # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Rejeitar meta zero                                         # features/04-agendamentos.feature:87
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar meta zero
+
+  Dado que possuo uma empresa exclusiva                             # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/agendamento-reducao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                                       # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                     # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "metaReducaoTco2e"                  # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Registrar compensao de carbono              # features/05-compensacoes.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Registrar compensao de carbono
+
+  Dado que possuo uma empresa exclusiva                # steps.CarbonoSteps.empresa()
+  Quando registro uma compensao de 40 tCO2e          # steps.CarbonoSteps.registrarCompensacao(double)
+  Ento o status deve ser 201                          # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "compensacao" # steps.CarbonoSteps.schema(java.lang.String)
+  Ento o campo "quantidadeTco2e" deve valer 40        # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "empresaId" deve ser "${empresaId}"        # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "tipo" deve ser "REFLORESTAMENTO"          # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Localizar compensao na listagem                           # features/05-compensacoes.feature:19
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Localizar compensao na listagem
+
+  Dado que possuo uma empresa exclusiva                              # steps.CarbonoSteps.empresa()
+  E que registrei uma compensao de 40 tCO2e                        # steps.CarbonoSteps.compensacao(double)
+  Quando envio GET para "/compensacao-carbono?sort=id,desc&size=100" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                        # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "pagina-compensacao"        # steps.CarbonoSteps.schema(java.lang.String)
+  E a pgina deve conter o id salvo em "compensacaoId"               # steps.CarbonoSteps.containsId(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Esquema do Cenrio: Rejeitar compensao com valor negativo # features/05-compensacoes.feature:40
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar compensao com valor negativo
+
+  Dado que possuo uma empresa exclusiva                     # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/compensacao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                               # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"             # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "quantidadeTco2e"           # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @negativo @esg @contrato
+Esquema do Cenrio: Rejeitar compensao com data futura    # features/05-compensacoes.feature:41
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Rejeitar compensao com data futura
+
+  Dado que possuo uma empresa exclusiva                     # steps.CarbonoSteps.empresa()
+  Quando envio POST para "/compensacao-carbono" com o JSON: # steps.CarbonoSteps.requestBody(java.lang.String,java.lang.String,java.lang.String)
+  Ento o status deve ser 400                               # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"             # steps.CarbonoSteps.schema(java.lang.String)
+  E o erro deve apontar o campo "dataCompensacao"           # steps.CarbonoSteps.invalidField(java.lang.String)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Conferir saldo por diferena de totais         # features/06-indicadores.feature:9
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Conferir saldo por diferena de totais
+
+  Dado que possuo uma empresa exclusiva                 # steps.CarbonoSteps.empresa()
+  E que capturei o saldo lquido inicial                # steps.CarbonoSteps.baseline()
+  E que registrei uma emisso de 100 tCO2e              # steps.CarbonoSteps.emissao(double)
+  E que registrei uma compensao de 40 tCO2e           # steps.CarbonoSteps.compensacao(double)
+  Quando envio GET para "/indicadores-sustentabilidade" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                           # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "indicadores"  # steps.CarbonoSteps.schema(java.lang.String)
+  E o saldo lquido deve aumentar 60 tCO2e              # steps.CarbonoSteps.delta(double)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Calcular impacto de meta sobre emisso da empresa    # features/06-indicadores.feature:20
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Calcular impacto de meta sobre emisso da empresa
+
+  Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+  E que registrei uma emisso de 100 tCO2e                    # steps.CarbonoSteps.emissao(double)
+  Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "agendamentoId" deve ser "${agendamentoId}"       # steps.CarbonoSteps.field(java.lang.String,java.lang.String)
+  E o campo "metaReducaoTco2e" deve valer 25                  # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "totalEmitidoEmpresa" deve valer 100              # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "percentualImpacto" deve valer 25                 # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @positivo @esg @contrato
+Cenrio: Retornar impacto zero sem emisses                   # features/06-indicadores.feature:32
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Retornar impacto zero sem emisses
+
+  Dado que possuo um agendamento exclusivo                    # steps.CarbonoSteps.agendamento()
+  Quando envio GET para "/impacto-mitigacao/${agendamentoId}" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 200                                 # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "impacto"            # steps.CarbonoSteps.schema(java.lang.String)
+  E o campo "totalEmitidoEmpresa" deve valer 0                # steps.CarbonoSteps.number(java.lang.String,double)
+  E o campo "percentualImpacto" deve valer 0                  # steps.CarbonoSteps.number(java.lang.String,double)
+
+@regressivo @negativo @esg @contrato
+Cenrio: Consultar impacto de agendamento inexistente            # features/06-indicadores.feature:41
+
+    Execuo HTTP real; credenciais e JWT no so anexados. Cenrio: Consultar impacto de agendamento inexistente
+
+  Dado que estou autenticado como ADMIN                          # steps.CarbonoSteps.login(java.lang.String)
+  Quando envio GET para "/impacto-mitigacao/9223372036854775807" # steps.CarbonoSteps.request(java.lang.String,java.lang.String)
+  Ento o status deve ser 404                                    # steps.CarbonoSteps.status(int)
+  E a resposta deve respeitar o contrato "erro"                  # steps.CarbonoSteps.schema(java.lang.String)
+
+34 Scenarios (34 passed)
+188 Steps (188 passed)
+0m23,466s
+
+
+[INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.56 s -- in runner.TestRunner
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 34, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  49.637 s
+[INFO] Finished at: 2026-11-04T01:00:21-03:00
+[INFO] ------------------------------------------------------------------------
+

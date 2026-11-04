@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: ${CARBONO_API_DIR:-../carbono-api}
+      dockerfile: ${TEST_PROJECT_DIR:-../teste-carbono-api}/Dockerfile.api
+    volumes:
+      - ./config:/config:ro
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' -H 'Content-Type: application/json' -d '{}' http://localhost:8080/api/v1/auth/login | grep -q 400"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+      start_period: 30s
+  tests:
+    build: .
+    environment:
+      BASE_URL: http://api:8080/api/v1
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ./target:/tests/target

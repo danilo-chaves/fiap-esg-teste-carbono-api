@@ -1,0 +1,50 @@
+name: teste-carbono-oracle-bdd
+services:
+  oracle:
+    image: ${BDD_ORACLE_IMAGE:-gvenzl/oracle-free:23.26.3-slim-faststart}
+    stop_grace_period: 2m
+    environment:
+      # Valores fictícios exclusivos deste banco local de testes.
+      ORACLE_PASSWORD: ${BDD_ORACLE_ADMIN_PASSWORD:-OracleBddAdmin123}
+      APP_USER: CARBONO_BDD
+      APP_USER_PASSWORD: ${BDD_ORACLE_PASSWORD:-CarbonoBdd123}
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 10s
+      retries: 90
+      start_period: 60s
+    shm_size: 1gb
+  api:
+    build:
+      context: ${CARBONO_API_DIR:-../carbono-api}
+      dockerfile: ${TEST_PROJECT_DIR:-../teste-carbono-api}/Dockerfile.api
+    command: ["bash", "/config/container-api-oracle.sh"]
+    environment:
+      BDD_ORACLE_PASSWORD: ${BDD_ORACLE_PASSWORD:-CarbonoBdd123}
+    volumes:
+      - ./config:/config:ro
+    ports:
+      - "127.0.0.1:${BDD_ORACLE_HTTP_PORT:-8081}:8080"
+    depends_on:
+      oracle:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' --max-time 3 -H 'Content-Type: application/json' -d '{}' http://localhost:8080/api/v1/auth/login | grep -q '^400$'"]
+      interval: 5s
+      timeout: 5s
+      retries: 120
+      start_period: 30s
+  tests:
+    build: .
+    environment:
+      BASE_URL: http://api:8080/api/v1
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ./target/oracle:/tests/target
+volumes:
+  oracle-data:
